@@ -1,0 +1,19 @@
+{
+  "name": "inspire-tech-hub",
+  "version": "1.0.0",
+  "description": "Inspire Tech Hub - Technology with Purpose",
+  "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
+  },
+  "dependencies": {
+    "aos": "^2.3.4",
+    "bootstrap": "^5.3.3"
+  },
+  "main": "tailwind.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+
+  
+}
