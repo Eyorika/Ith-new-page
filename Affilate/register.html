@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Affiliate Registration</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- React CDN -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    
+     .loading-spinner {
+      animation: spin 1s linear infinite;
+      display: inline-block;
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+
+    #affiliate {
+
+padding: 80px 0;
+
+background: #f8f9fa;  
+
+}
+
+
+
+#affiliate h2 {
+
+font-size: 2.5rem;
+
+font-weight: 700;
+
+color: #2E3A87;  
+
+margin-bottom: 40px;
+
+text-align: center;
+
+}
+
+
+
+#affiliate .form-control {
+
+border-radius: 10px;
+
+border: 1px solid #ddd;
+
+padding: 12px;
+
+margin-bottom: 20px;
+
+}
+
+
+
+#affiliate .form-control:focus {
+
+border-color: #FD7902; 
+
+box-shadow: 0 0 5px rgba(253, 121, 2, 0.5);
+
+}
+
+
+
+#affiliate .btn-primary {
+
+background-color: #FD7902;
+
+border: none;
+
+padding: 12px 30px;
+
+font-size: 1.2rem;
+
+border-radius: 10px;
+
+transition: background-color 0.3s ease;
+
+}
+
+
+
+#affiliate .btn-primary:hover {
+
+background-color: #e56b00; 
+
+}
+
+
+
+ 
+@media (max-width: 768px) {
+
+#affiliate h2 {
+
+  font-size: 2rem;
+
+}
+
+
+
+#affiliate .btn-primary {
+
+  font-size: 1rem;
+
+  padding: 10px 20px;
+
+}
+}
+
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    function AffiliateForm() {
+      const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        message: ''
+      });
+      const [loading, setLoading] = useState(false);
+      const [success, setSuccess] = useState(false);
+      const [error, setError] = useState('');
+
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        setError('');
+        
+        try {
+          const response = await fetch('YOUR_BACKEND_ENDPOINT', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+          });
+
+          if (!response.ok) throw new Error('Submission failed');
+          
+          setSuccess(true);
+          setFormData({ name: '', email: '', phone: '', message: '' });
+        } catch (err) {
+          setError(err.message || 'An error occurred');
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      const handleChange = (e) => {
+        setFormData(prev => ({
+          ...prev,
+          [e.target.id]: e.target.value
+        }));
+      };
+
+      return (
+        <section id="affiliate" className="py-5">
+          <div className="container">
+            <h2>Join Our Affiliate Program</h2>
+            <form onSubmit={handleSubmit}>
+              <div className="mb-3">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="name"
+                  placeholder="Your Name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <input
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  placeholder="Your Email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <input
+                  type="tel"
+                  className="form-control"
+                  id="phone"
+                  placeholder="Your Phone Number"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <textarea
+                  className="form-control"
+                  id="message"
+                  rows="5"
+                  placeholder="Your Message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <button 
+  type="submit" 
+  className="btn btn-primary"
+  disabled={loading}
+>
+  {loading ? (
+    <React.Fragment>
+      <span className="loading-spinner">⏳</span> Submitting...
+    </React.Fragment>
+  ) : 'Submit'}
+</button>
+            </form>
+            {success && (
+              <div className="mt-3 text-success">
+                Thank you for joining! We'll contact you soon.
+              </div>
+            )}
+            {error && (
+              <div className="mt-3 text-danger">
+                Error: {error}
+              </div>
+            )}
+          </div>
+        </section>
+      );
+    }
+
+    ReactDOM.render(<AffiliateForm />, document.getElementById('root'));
+  </script>
+</body>
+</html>

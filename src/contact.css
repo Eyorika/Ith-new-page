@@ -1,0 +1,124 @@
+#reach-us {
+    padding: 80px 0;
+    background: linear-gradient(-45deg, #2E3A87, #1A1F4D, #0A0D21, #2E3A87);
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
+    color: white;
+  }
+
+   @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+   #reach-us h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #FD7902; 
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+   #reach-us .contact-form {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  #reach-us .form-control {
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 12px;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+  }
+
+  #reach-us .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  #reach-us .form-control:focus {
+    border-color: #FD7902;  
+    box-shadow: 0 0 5px rgba(253, 121, 2, 0.5);
+  }
+
+  #reach-us .btn-primary {
+    background-color: #FD7902;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+  }
+
+  #reach-us .btn-primary:hover {
+    background-color: #e56b00;  
+  }
+
+   #reach-us .contact-info {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  #reach-us .contact-info h3 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #FD7902; 
+    margin-bottom: 20px;
+  }
+
+  #reach-us .contact-info p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 15px;
+  }
+
+  #reach-us .contact-info i {
+    color: #FD7902;  
+    margin-right: 10px;
+  }
+
+   #reach-us .map-container {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  #reach-us iframe {
+    width: 100%;
+    height: 300px;
+    border: none;
+  }
+
+   @media (max-width: 768px) {
+    #reach-us {
+      padding: 60px 0;
+    }
+
+    #reach-us h2 {
+      font-size: 2rem;
+    }
+
+    #reach-us .contact-form,
+    #reach-us .contact-info {
+      margin-bottom: 30px;
+    }
+
+    #reach-us .btn-primary {
+      font-size: 1rem;
+      padding: 10px 20px;
+    }
+  }
